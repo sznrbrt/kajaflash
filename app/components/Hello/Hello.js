@@ -11,7 +11,9 @@ export default class Hello extends React.Component {
 
     return(
       <div>
-        Hello world!
+        <span className="redText">
+          Hello world!
+        </span>
       </div>
     );
   }
