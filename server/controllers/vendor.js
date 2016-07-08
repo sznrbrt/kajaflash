@@ -1,10 +1,27 @@
 import VendorDB from '../models/Vendor'
+import bcrypt from 'bcrypt'
 
 class Account {
   static register(req, res) {
-    VendorDB.register(req.body, err => {
-      res.status(err ? 400 : 200).send(err || "Successful registration!");
-    });
+    let vendorObj = req.body;
+    VendorDB.findOne({username: vendorObj.username}, (err0, dbVendor) => {
+      if(err0 || dbVendor) return res.status(400).send(err0 || 'Username not available.')
+
+      bcrypt.hash(vendorObj.password, 12, (err1, hash) => {
+        if(err1) return res.status(400).send(err1)
+
+        var vendor = new VendorDB({
+          email: vendorObj.email,
+          name: vendorObj.name,
+          username: vendorObj.username,
+          password: hash
+        })
+
+        vendor.save((err3) => {
+            res.status(err3 ? 400 : 200).send(err3 || "Successful registration!");
+        })
+      })
+    })
   }
 
   static getProfile(req, res) {
@@ -50,40 +67,6 @@ class Item {
     })
   }
 
-  static editItem(req, res) {
-
-    VendorDB.findById(req.user._id, (err0, vendor) => {
-      if(err0) return res.status(400).send(err0);
-
-      let itemID = req.query.id;
-      let newName = req.body.name;
-      let newPrice = req.body.price;
-      let newDesc = req.body.desc;
-      let newImage = req.body.image;
-
-      vendor.items = vendor.items.map((item) => {
-        console.log(item._id.toString() === itemID.toString());
-        if(item._id.toString() === itemID.toString()) {
-          return {
-                   "name": newName || item.name,
-                   "price": newPrice || item.price,
-                   "desc": newDesc || item.desc,
-                   "image": newImage || item.image,
-                   "_id":  item._id
-                 }
-        } else {
-          return item;
-        }
-      })
-
-      vendor.save((err1, editedVendorData) => {
-        if(err1) return res.status(400).send(err1);
-        res.send(editedVendorData);
-      })
-    });
-
-  }
-
   static removeItem(req, res) {
     VendorDB.findById(req.user._id, (err0, vendor) => {
       if(err0) return res.status(400).send(err0);
@@ -106,7 +89,7 @@ class DevHelp {
   static getAll(req, res) {
     VendorDB.find({}, (err, users) => {
       res.status(err ? 400 : 200).send(err || users);
-    });
+    }).populate('menu');
   }
 }
 

@@ -16,11 +16,6 @@ router.route('/profile')
 
 router.route('/page').get(Vendor.isLoggedIn, Account.getVendorPage)
 
-router.route('/item')
-  .post(Vendor.isLoggedIn, Item.addItem)
-  .put(Vendor.isLoggedIn, Item.editItem)
-  .delete(Vendor.isLoggedIn, Item.removeItem)
-
 // only for development
 router.route('/all')
         .get(DevHelp.getAll)
