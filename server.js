@@ -6,6 +6,9 @@ import bodyParser from 'body-parser';
 import indexRoute from './server/routes/index'
 import mongoose from 'mongoose'
 import logger from 'morgan'
+import dotenv from 'dotenv';
+
+dotenv.load();
 
 const PORT = process.env.PORT || 3000;
 const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/kajaflash';

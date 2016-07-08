@@ -17,7 +17,7 @@ const vendorSchema = new mongoose.Schema({
 
 vendorSchema.statics.isLoggedIn = function(req, res, next) {
   // TESTING!!!
-  Vendor.findById('577f44acaac448434520f4f4', (err, vendor) => {
+  Vendor.findById('577fe5fd05d56da94b4bfdd0', (err, vendor) => {
     if(err) return res.status(400).send(err)
     req.user = vendor;
     next();
@@ -42,8 +42,10 @@ vendorSchema.methods.addToOpenOrders= function(orderID, cb) {
 
 vendorSchema.methods.closeOrder = function(orderID, cb) {
   let idx = this.openOrders.indexOf(orderID);
+  console.log('VENDOR IDX', idx);
   this.openOrders.splice(idx, 1);
   this.closedOrders.push(orderID);
+  console.log('VENDOR', this);
   this.save(cb);
 }
 

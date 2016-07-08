@@ -36,13 +36,33 @@ class Order {
   static changeStatus(req, res){
     let orderID = req.query.id;
     let status = req.query.status;
-    OrderDB.findById(orderID, (err0, order) => {
-      if(err0) return res.status(400).send(err0);
-
-      order.checkout(status, (err1, checkedoutOrder) => {
-        res.status(err1 ? 400 : 200).send(err1 || checkedoutOrder);
+    if(status === 'delivered' || status === 'cancelled') {
+      OrderDB.findById(orderID, (err0, order) => {
+        if(err0) return res.status(400).send(err0);
+        order.checkout(status, (err1, checkedoutOrder) => {
+          UserDB.findById(order.customer, (err2, user) => {
+            if(err2) return res.status(400).send(err2);
+            user.closeOrder(orderID, (err3) => {
+              if(err3) return res.status(400).send(err3);
+              VendorDB.findById(order.vendor, (err4, vendor) => {
+                if(err4) return res.status(400).send(err4);
+                vendor.closeOrder(orderID, (err5) => {
+                  if(err5) return res.status(400).send(err5);
+                  res.send(checkedoutOrder);
+                })
+              })
+            })
+          })
+        })
       })
-    })
+    } else {
+      OrderDB.findById(orderID, (err0, order) => {
+        if(err0) return res.status(400).send(err0);
+        order.checkout(status, (err1, checkedoutOrder) => {
+          res.status(err1 ? 400 : 200).send(err1 || checkedoutOrder);
+        })
+      })
+    }
   }
 
 }

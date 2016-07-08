@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
 
 
 userSchema.statics.isLoggedIn = function(req, res, next) {
-  User.findById('577f43c3570c3e2045f99add', (err, _user) => {
+  User.findById('577fe59e153581824b5dae06', (err, _user) => {
     if(err) return res.status(400).send(err);
     req.user = _user;
     next();
