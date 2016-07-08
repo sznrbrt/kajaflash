@@ -50,68 +50,8 @@ class DevHelp {
   static getAll(req, res) {
     UserDB.find({}, (err, users) => {
       res.status(err ? 400 : 200).send(err || users);
-    });
+    }).populate('addresses');
   }
 }
 
-class Address {
-  static addAddress(req, res) {
-    UserDB.findById(req.user._id, (err0, user) => {
-      if(err0) return res.status(400).send(err0);
-      user.addresses.push(req.body);
-
-      user.save((err1, editedUserData) => {
-        if(err1) return res.status(400).send(err1);
-        res.send(editedUserData)
-      })
-    })
-  }
-
-  static editAddress(req, res) {
-
-    UserDB.findById(req.user._id, (err0, user) => {
-      if(err0) return res.status(400).send(err0);
-
-      let addressID = req.query.id;
-      let newName = req.body.name;
-      let newAddress = req.body.address;
-
-      user.addresses = user.addresses.map((addressItem) => {
-        console.log(addressItem._id.toString() === addressID.toString());
-        if(addressItem._id.toString() === addressID.toString()) {
-          return {
-                   "name": newName || addressItem.name,
-                   "address": newAddress || addressItem.address,
-                   "_id":  addressItem._id
-                 }
-        } else {
-          return addressItem;
-        }
-      })
-
-      user.save((err1, editedUserData) => {
-        if(err1) return res.status(400).send(err1);
-        res.send(editedUserData);
-      })
-    });
-
-  }
-
-  static removeAddress(req, res) {
-    UserDB.findById(req.user._id, (err0, user) => {
-      if(err0) return res.status(400).send(err0);
-
-      let addressID = req.query.id;
-      user.addresses = user.addresses.filter((address) => {
-        return address._id.toString() !== addressID.toString();
-      })
-
-      user.save((err1, editedUserData) => {
-        if(err1) return res.status(400).send(err1);
-        res.send(editedUserData)
-      })
-    })
-  }
-}
-
-export { Account, DevHelp, Address };
+export { Account, DevHelp };

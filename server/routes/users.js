@@ -1,6 +1,6 @@
 import express from 'express'
 import User from '../models/User'
-import { Account, DevHelp, Address } from '../controllers/user'
+import { Account, DevHelp } from '../controllers/user'
 
 const router = express.Router();
 
@@ -9,11 +9,6 @@ const router = express.Router();
 router.route('/profile')
   .get(User.isLoggedIn, Account.getProfile)
   .put(User.isLoggedIn, Account.editProfile)
-
-router.route('/address')
-  .post(User.isLoggedIn, Address.addAddress)
-  .put(User.isLoggedIn, Address.editAddress)
-  .delete(User.isLoggedIn, Address.removeAddress)
 
 router.route('/register').post(Account.register)
 

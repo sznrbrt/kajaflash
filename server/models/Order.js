@@ -4,20 +4,25 @@ import bcrypt from 'bcrypt'
 const orderSchema = new mongoose.Schema({
   createdAt: { type: String, required: true },
   processedAt: { type: String },
-  items: []
+  items: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' }],
+  totalAmount: { type: Number },
+  comment: { type: String },
+  customer: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  vendor: { type: mongoose.Schema.Types.ObjectId, ref: 'Vendor' },
+  deliveryAddress: { type: String },
+  status: {
+    processed: { type: Boolean, default: false },
+    cooked: { type: Boolean, default: false },
+    underDelivery: { type: Boolean, default: false },
+    delivered: { type: Boolean, default: false },
+    cancelled: { type: Boolean, default: false }
+  }
+});
 
-  name:
-  email: { type: String, required: true, unique: true },
-  phoneNumber: { type: String },
-  password: { type: String, required: true },
-  addresses: [
-    {
-      name: { type: String },
-      address: { type: String }
-    }
-  ],
-  orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }]
-}, { timestamps: true });
+orderSchema.methods.checkout = function(update, cb) {
+  this.status[update] = true;
+  this.save(cb)
+}
 
 const Order = mongoose.model('Order', orderSchema);
 
