@@ -10,15 +10,6 @@ const userSchema = new mongoose.Schema({
   closedOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }]
 }, { timestamps: true });
 
-
-userSchema.statics.isLoggedIn = function(req, res, next) {
-  User.findById('577fe59e153581824b5dae06', (err, _user) => {
-    if(err) return res.status(400).send(err);
-    req.user = _user;
-    next();
-  })
-};
-
 userSchema.methods.addAddress = function(addressID, cb) {
   this.addresses.push(addressID);
   this.save(cb);

@@ -12,7 +12,7 @@ export default class Hello extends React.Component {
     return(
       <div>
         <span className="redText">
-          Hello world!
+          Hello world!!
         </span>
       </div>
     );

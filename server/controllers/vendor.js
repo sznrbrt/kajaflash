@@ -1,7 +1,11 @@
 import VendorDB from '../models/Vendor'
 import bcrypt from 'bcrypt'
 
-class Account {
+class VendorAccount {
+  static getProfile(req, res) {
+    res.send(req.user || 'Something went wrong.');
+  }
+
   static register(req, res) {
     let vendorObj = req.body;
     VendorDB.findOne({username: vendorObj.username}, (err0, dbVendor) => {
@@ -24,10 +28,6 @@ class Account {
     })
   }
 
-  static getProfile(req, res) {
-    res.send(req.user);
-  }
-
   static editProfile(req, res) {
     let editedVendorData = req.body;
     let userID = req.user._id;
@@ -47,41 +47,22 @@ class Account {
 
   static getVendorPage(req, res) {
     let id = req.query.id;
-
+    if(!id) return res.status(400).send('No id specified.')
     VendorDB.findById(id, (err, vendor) =>{
       res.status(err ? 400 : 200).send(err || vendor);
     })
   }
 }
 
-class Item {
-  static addItem(req, res) {
-    VendorDB.findById(req.user._id, (err0, user) => {
-      if(err0) return res.status(400).send(err0);
-      user.items.push(req.body);
-
-      user.save((err1, editedVendorData) => {
-        if(err1) return res.status(400).send(err1);
-        res.send(editedVendorData);
-      })
-    })
+class VendorAuth {
+  static login(req, res) {
+    console.log('You are in!');
+    res.send(req.user);
   }
 
-  static removeItem(req, res) {
-    VendorDB.findById(req.user._id, (err0, vendor) => {
-      if(err0) return res.status(400).send(err0);
-
-      let itemID = req.query.id;
-
-      vendor.items = vendor.items.filter((item) => {
-        return item._id.toString() !== itemID.toString();
-      })
-
-      vendor.save((err1, editedVendorData) => {
-        if(err1) return res.status(400).send(err1);
-        res.send(editedVendorData)
-      })
-    })
+  static logout(req, res) {
+    req.logout();
+    res.send('You have logged out!');
   }
 }
 
@@ -93,4 +74,4 @@ class DevHelp {
   }
 }
 
-export { DevHelp, Account, Item };
+export { DevHelp, VendorAccount, VendorAuth };

@@ -10,14 +10,15 @@ class Account {
     let userObj = req.body;
 
     UserDB.findOne({email: userObj.email}, (err0, dbUser) => {
-      if(err0 || dbUser) return cb(err0 || { error: 'Email not available.' })
+      if(err0 || dbUser) return res.status(400).send({ error: 'Email not available.' });
 
       bcrypt.hash(userObj.password, 12, (err1, hash) => {
-        if(err1) return cb(err1);
+        if(err1) return res.status(400).send(err1);
 
         var user = new UserDB({
           email: userObj.email,
           name: userObj.name,
+          username: userObj.username,
           password: hash
         })
 
@@ -54,4 +55,16 @@ class DevHelp {
   }
 }
 
-export { Account, DevHelp };
+class Auth {
+  static login(req, res) {
+    console.log('You are in!');
+    return res.send(req.user);
+  }
+
+  static logout(req, res) {
+    req.logout();
+    res.send('You have logged out!');
+  }
+}
+
+export { Account, DevHelp, Auth };

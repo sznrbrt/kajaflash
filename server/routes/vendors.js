@@ -1,20 +1,21 @@
 import express from 'express'
 import Vendor from '../models/Vendor'
-import { Account, DevHelp, Item } from '../controllers/vendor'
+import { VendorAccount, DevHelp } from '../controllers/vendor'
+import connectEnsure from 'connect-ensure-login'
 
 const router = express.Router();
 
-// API data/vendor/
+// API --> data/vendor/
 
-router.route('/register').post(Account.register)
-
-router.route('/delete').delete(Account.deleteAccount)
+router.route('/delete')
+  .delete(VendorAccount.deleteAccount)
 
 router.route('/profile')
-  .get(Vendor.isLoggedIn, Account.getProfile)
-  .put(Vendor.isLoggedIn, Account.editProfile)
+  .get(connectEnsure.ensureLoggedIn('/'), VendorAccount.getProfile)
+  .put(connectEnsure.ensureLoggedIn('/'), VendorAccount.editProfile)
 
-router.route('/page').get(Vendor.isLoggedIn, Account.getVendorPage)
+router.route('/page')
+  .get(connectEnsure.ensureLoggedIn('/'), VendorAccount.getVendorPage)
 
 // only for development
 router.route('/all')

@@ -5,12 +5,14 @@ import vendorRoutes from './vendors'
 import menuItemRoutes from './menuItems'
 import addressRoutes from './addresses'
 import orderRoutes from './orders'
+import authRoutes from './auth'
 
 const jsonParser = bodyParser.json();
 const router = express.Router();
 
-// API /data
+// API --> /data
 
+router.use('/auth', authRoutes);
 router.use('/user', userRoutes);
 router.use('/vendor', vendorRoutes);
 router.use('/menuItem', menuItemRoutes);
