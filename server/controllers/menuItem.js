@@ -23,6 +23,8 @@ class Item {
     let editedMenuItem = req.body;
     let menuItemID = req.query.id;
 
+    if(req.user.menu.indexOf(menuItemID) === -1) res.status(400).send({ err: 'Unauthorized edit. You\'re not the owner.' })
+
     MenuItemDB.findByIdAndUpdate(menuItemID, { $set: editedMenuItem }, {new: true}, (err, editedMenuItem) => {
       if(err) return res.status(400).send(err);
       res.send(editedMenuItem);
@@ -31,6 +33,9 @@ class Item {
 
   static delete (req, res) {
     let _id = req.query.id;
+
+    if(req.user.menu.indexOf(_id) === -1) res.status(400).send({ err: 'Unauthorized delete. You\'re not the owner.' })
+
     MenuItemDB.findByIdAndRemove(_id, (err0) => {
       if(err0) return res.status(400).send(err0);
       req.user.deleteMenuItem(_id, (err1) => {

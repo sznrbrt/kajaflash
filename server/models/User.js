@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
   openOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
-  closedOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }]
+  closedOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
+  role: { type: String, default: 'user' }
 }, { timestamps: true });
 
 userSchema.methods.addAddress = function(addressID, cb) {

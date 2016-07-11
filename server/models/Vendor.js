@@ -11,7 +11,8 @@ const vendorSchema = new mongoose.Schema({
   logo: { type: String },
   menu: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' }],
   openOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
-  closedOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }]
+  closedOrders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Order' }],
+  role: { type: String, default: 'vendor' }
 }, { timestamps: true });
 
 vendorSchema.methods.addMenuItem = function(itemID, cb) {

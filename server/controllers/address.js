@@ -20,6 +20,8 @@ class Address {
     let editedAddressItem = req.body;
     let addressID = req.query.id;
 
+    if(req.user.addresses.indexOf(addressID) === -1) res.status(400).send({ err: 'Unauthorized edit. You\'re not the owner.' })
+
     AddressDB.findByIdAndUpdate(addressID, { $set: editedAddressItem }, {new: true}, (err, editedAddressItem) => {
       if(err) return res.status(400).send(err);
       res.send(editedAddressItem);
@@ -28,6 +30,9 @@ class Address {
 
   static delete (req, res) {
     let _id = req.query.id;
+
+    if(req.user.addresses.indexOf(_id) === -1) res.status(400).send({ err: 'Unauthorized delete. You\'re not the owner.' })
+
     AddressDB.findByIdAndRemove(_id, (err0) => {
       if(err0) return res.status(400).send(err0);
       req.user.deleteAddress(_id, (err1) => {

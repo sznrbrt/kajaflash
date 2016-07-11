@@ -4,6 +4,8 @@ import UserDB from '../models/User'
 
 class Order {
   static create(req, res){
+    if(!req.body.vendorId) res.status(400).send({ err: 'Incomplete request data.' })
+
     let now = new Date();
     let order = new OrderDB({
       "createdAt": now,
@@ -36,6 +38,17 @@ class Order {
   static changeStatus(req, res){
     let orderID = req.query.id;
     let status = req.query.status;
+
+    if(status !== 'processed' && status !== 'cooked' &&
+       status !== 'underDelivery' && status !== 'cancelled' &&
+       status !== 'delivered') return res.status(400).send('Wrong status format. Please, send status as query parmeter')
+
+    if(!status) return res.status(400).send('No status specified. Please, send status as query parmeter')
+    if(status === 'processed' && req.user.role !== 'vendor') return res.status(400).send({err: 'Unauthorized checkout. You must be a vendor to process orders.'})
+    else if (status === 'cooked' && req.user.role !== 'vendor') return res.status(400).send({err: 'Unauthorized checkout. You must be a vendor to process orders.'})
+    else if (status === 'underDelivery' && req.user.role !== 'vendor') return res.status(400).send({err: 'Unauthorized checkout. You must be a vendor to process orders.'})
+    else if (status === 'cancelled' && req.user.role !== 'vendor') return res.status(400).send({err: 'Unauthorized checkout. You must be a vendor to process orders.'})
+
     if(status === 'delivered' || status === 'cancelled') {
       OrderDB.findById(orderID, (err0, order) => {
         if(err0) return res.status(400).send(err0);

@@ -11,7 +11,7 @@ passport.use('user-local', new Strategy({
   function(_email, password, cb) {
     User.find({ email: _email }).exec(function(err, users) {
       if (err) { return cb(err); }
-      if (!users) { return cb(null, false); }
+      if (!users[0]) { return cb(null, false); }
 
       let user = users[0];
 
@@ -28,7 +28,7 @@ passport.use('vendor-local', new Strategy({
   function(_email, password, cb) {
     Vendor.find({ email: _email }).exec(function(err, vendors) {
       if (err) { return cb(err); }
-      if (!vendors) { return cb(null, false); }
+      if (!vendors[0]) { return cb(null, false); }
 
       let vendor = vendors[0];
 
