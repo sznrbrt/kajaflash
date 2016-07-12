@@ -1,6 +1,9 @@
 import React from "react";
 import { render } from 'react-dom'
-import Hello from './Hello/Hello'
+import NavBar from './NavBar'
+import Landing from './Landing'
+
+// Regex to hide react-bootstrap props error logs ^((?!Unknown props).)+$
 
 export default class Main extends React.Component {
   constructor(props){
@@ -9,10 +12,10 @@ export default class Main extends React.Component {
   }
 
   render() {
-
     return(
       <div>
-        <Hello />
+        <NavBar />
+        <Landing />
       </div>
     );
   }

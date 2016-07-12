@@ -1,3 +1,89 @@
 body {
   background-color: cornsilk;
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-default {
+  border-radius: 0px !important;
+  background-color: white;
+  box-shadow: none;
+  border: none;
+  min-height: 60px;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+#logo {
+  color: #F9713F;
+  font-size: 26px;
+  font-weight: bolder;
+  margin-top: 6px;
+}
+
+.rightNavButton {
+}
+
+#logInBtn {
+  color: #F9713F;
+  background-color: transparent;
+  background-image: none;
+}
+
+#registerBtn {
+  background-color: #F9713F;
+  color: white;
+  background-image: none;
+}
+
+#logInBtn:hover {
+  background-color: #F9713F;
+  color: white;
+  background-image: none;
+  border:none;
+}
+
+#registerBtn:hover {
+  color: #F9713F;
+  background-color: transparent;
+  background-image: none;
+  border: 2px solid #F9713F;
+}
+
+.navButton{
+  border-radius: 5px;
+  margin-top: 13px;
+  border: 2px solid #F9713F;
+  margin-right: 20px;
+  height: 35px;
+  min-width: 100px;
+  text-align: center;
+  font-size: 16px;
+  padding-top: 4px;
+  font-weight: bolder;
+}
+
+.navbar-nav>li>a {
+  padding: 0;
+}
+
+.landingFoodImage {
+  background-size: 550px auto;
+  height: 650px;
+  background-image: url("https://images.unsplash.com/photo-1432139509613-5c4255815697?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=10c6e7de2acb2838e44c017f6af44bbb");
+}
+
+.noMarPad {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.noPad {
+  padding: 0;
+}
+
+#landingActionBox {
+  background-color: #9FD444;
+  height: 650px;
 }

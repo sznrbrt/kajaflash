@@ -36,7 +36,7 @@ app.use(require('express-session')({ secret: 'keyboardcat', resave: true, saveUn
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', function(req, res) {
+app.get('*', function(req, res) {
   res.sendFile(path.join( __dirname, './public/index.html'));
 });
 
