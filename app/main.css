@@ -1,6 +1,11 @@
 body {
-  background-color: cornsilk;
+  background-color: white;
   font-family: 'Raleway', sans-serif;
+  overflow-y: scroll;
+}
+
+.whiteTxt {
+  color:white !important;
 }
 
 .navbar-default {
@@ -69,9 +74,9 @@ body {
 }
 
 .landingFoodImage {
-  background-size: 550px auto;
-  height: 650px;
-  background-image: url("https://images.unsplash.com/photo-1432139509613-5c4255815697?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=10c6e7de2acb2838e44c017f6af44bbb");
+  background-size: 900px auto;
+  height: 600px;
+  background-image: url("https://images.unsplash.com/photo-1466220549276-aef9ce186540?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=bd4386d2b984fb19928a3154a622deb3");
 }
 
 .noMarPad {
@@ -84,6 +89,142 @@ body {
 }
 
 #landingActionBox {
-  background-color: #9FD444;
-  height: 650px;
+  background-color: #99d345;
+  /* IE9, iOS 3.2+ */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjEwMCUiIHI9IjE0MS40MjEzNTYyMzczMDk1JSI+PHN0b3Agc3RvcC1jb2xvcj0iI2JlZGEzOCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAiLz48c3RvcCBzdG9wLWNvbG9yPSIjNzRjYzUyIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==);
+  /* Android 2.3- hack (needed for the actual radial gradient) */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSIwJSIgY3k9IjEwMCUiIHI9IjE0MS40MjEzNTYyMzczMDk1JSI+PHN0b3Agc3RvcC1jb2xvcj0iI2JlZGEzOCIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAiLz48c3RvcCBzdG9wLWNvbG9yPSIjNzRjYzUyIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMSIvPjwvcmFkaWFsR3JhZGllbnQ+PHJlY3QgeD0iLTUwIiB5PSItNTAiIHdpZHRoPSIxMDEiIGhlaWdodD0iMTAxIiBmaWxsPSJ1cmwoI3ZzZ2cpIiAvPjwvc3ZnPg==),
+      -webkit-gradient(radial, left bottom, 0, left bottom, 830,color-stop(0, rgb(190, 218, 56)),color-stop(1, rgb(116, 204, 82)));
+  /* Android 2.3 */
+  background-image: -webkit-radial-gradient(left bottom, ellipse farthest-corner,rgb(190, 218, 56) 0%,rgb(116, 204, 82) 100%);
+  /* IE10+ */
+  background-image: radial-gradient(ellipse farthest-corner at left bottom,rgb(190, 218, 56) 0%,rgb(116, 204, 82) 100%);
+  background-image: -ms-radial-gradient(left bottom, ellipse farthest-corner,rgb(190, 218, 56) 0%,rgb(116, 204, 82) 100%);
+  height: 600px;
+}
+/* IE8- CSS hack */
+@media \0screen\,screen\9 {
+  .gradient {
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffbeda38",endColorstr="#ff74cc52",GradientType=0);
+  }
+}
+
+.centeredPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#callToActionTxt {
+  font-weight: 800;
+  font-size: 42px;
+  margin-bottom: 90px;
+}
+
+.addressSearchBox {
+  border-radius: 5px !important;
+}
+
+.addressSearchBoxHolder {
+  width: 400px;
+  margin-top: 40px;
+}
+
+#findFoodBtn {
+  background-color: #F9713F;
+  color: white;
+  background-image: none;
+  font-weight: bolder;
+  margin-top: 100px;
+}
+
+#howItWorksText {
+  font-weight: bolder;
+  color: #F9713F;
+  font-size: 32px;
+  margin-top: 30px;
+}
+
+.fa-angle-down {
+  color:red;
+}
+
+.howItWorksDown {
+  color: #F9713F;
+  font-size: 24px;
+}
+
+#landingGuide {
+  margin-top: 20px;
+}
+
+.panel-body {
+  min-height: 260px;
+}
+
+.guideIcon {
+  max-width: 100px;
+}
+
+#yourTasteLabel {
+  margin-top: 45px;
+}
+
+#yourTasteTxt {
+  margin-top: 30px;
+}
+
+#foodIcon {
+  margin-top: 20px;
+}
+
+#footer {
+  height: 400px;
+  padding-top: 50px;
+  opacity: 0.6;
+}
+
+.footerHr {
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.footerTitle {
+  margin-bottom: 40px;
+}
+
+.footerLink {
+  margin-top: 40px;
+}
+
+.ap-input {
+  width: 500px;
+}
+
+#submitButton {
+  margin-right: 15px;
+  width: 100%;
+}
+
+.orRegister {
+}
+
+#forgotPassword {
+  font-size: 14px;
+  position: relative;
+  left: 10px;
+  top:1px;
+}
+
+#newUserWell {
+  margin-top: 50px;
+  /*margin-left: 40px;
+  margin-right: 40px;*/
+}
+
+.orSeparator {
+  margin-top: 50px;
+  font-size: 32px;
+  font-weight: bolder;
 }

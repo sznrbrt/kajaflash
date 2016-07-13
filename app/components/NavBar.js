@@ -1,12 +1,25 @@
 import React from "react";
 import { render } from 'react-dom'
-import { Button, Navbar, NavItem, NavDropdown, MenuItem, Nav } from 'react-bootstrap';
+import { Button, Navbar, Nav, Modal, OverlayTrigger } from 'react-bootstrap';
 import Logo from './Logo'
+import LoginButton from './LoginButton'
+import RegisterButton from './RegisterButton'
 
 export default class NavBar extends React.Component {
   constructor(props){
     super(props)
 
+    this.state = { showModal: false}
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+  }
+
+  close() {
+    this.setState({ showModal: false });
+  }
+
+  open() {
+    this.setState({ showModal: true });
   }
 
   render() {
@@ -21,13 +34,11 @@ export default class NavBar extends React.Component {
           <Navbar.Collapse>
             <Nav pullRight>
               <li>
-                <Button id="logInBtn" bsStyle="success navButton" bsSize="small">Log In</Button>
+                <LoginButton />
               </li>
               <li>
-                <Button id="registerBtn" bsStyle="success navButton" bsSize="small">Register</Button>
+                <RegisterButton />
               </li>
-              {/*<NavItem id="logInBtn" className="navButton" ventKey={1} href="#">Log In</NavItem>
-              <NavItem id="registerBtn" className="navButton" ventKey={2} href="#">Register</NavItem>*/}
             </Nav>
           </Navbar.Collapse>
         </Navbar>
