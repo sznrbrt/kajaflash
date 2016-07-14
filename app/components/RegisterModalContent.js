@@ -49,7 +49,7 @@ export default class RegisterModalContent extends React.Component {
 
           <FormGroup>
             <Col sm={12}>
-              <Button type="submit" id="submitButton" bsStyle="success">
+              <Button type="submit" id="registerButton" bsStyle="success">
                 Register
               </Button>
             </Col>
@@ -57,7 +57,7 @@ export default class RegisterModalContent extends React.Component {
               <div className="orSeparator">or</div>
             </Col>
             <Col sm={12}>
-              <Well className="centeredPrompt" id="newUserWell">
+              <Well className="centeredPrompt" id="existingUserWell">
                 Already have an account? <br />
               <Button bsStyle="link">Log In</Button>
               </Well>

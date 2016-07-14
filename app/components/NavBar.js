@@ -4,6 +4,7 @@ import { Button, Navbar, Nav, Modal, OverlayTrigger } from 'react-bootstrap';
 import Logo from './Logo'
 import LoginButton from './LoginButton'
 import RegisterButton from './RegisterButton'
+import { Link } from 'react-router'
 
 export default class NavBar extends React.Component {
   constructor(props){
@@ -23,6 +24,15 @@ export default class NavBar extends React.Component {
   }
 
   render() {
+    let loggedIn = this.props.isLoggedIn;
+    let loginBtn = <li><LoginButton /></li>;
+    let registerBtn = <li><RegisterButton /></li>;
+    let buttons;
+    if(!loggedIn) {
+      buttons = [loginBtn, registerBtn];
+    } else {
+      buttons = [];
+    }
 
     return(
       <div>
@@ -33,12 +43,10 @@ export default class NavBar extends React.Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav pullRight>
-              <li>
-                <LoginButton />
-              </li>
-              <li>
-                <RegisterButton />
-              </li>
+              {/*<li>
+                <Link to="/mainpage">Mainpage</Link>
+              </li>*/}
+              {buttons}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

@@ -25,23 +25,31 @@ mongoose.connect(MONGOURL, err => {
 
 let app = express();
 
+// Do not allow cors in dev?!
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  next();
+});
+
 app.use(express.static('public'));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(require('cookie-parser')());
+app.use(require('cookie-parser')('keyboardcat'));
 app.use(require('express-session')({ secret: 'keyboardcat', resave: true, saveUninitialized: false, maxAge: (7 * 26 * 60 * 60 * 1000) }));
+
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('*', function(req, res) {
-  res.sendFile(path.join( __dirname, './public/index.html'));
-});
-
-
 app.use('/data', indexRoute);
+
+app.get('*', function(req, res) {
+  res.sendFile(path.resolve( __dirname, 'public' , 'index.html'));
+});
 
 app.listen(PORT,(err) => {
   if(err) console.log(err);

@@ -9,7 +9,7 @@ const router = express.Router();
 // API data/user/
 
 router.route('/profile')
-  .get(connectEnsure.ensureLoggedIn('/'), Auth.isAuthorized('user'), Account.getProfile)
+  .get(testMiddleware, connectEnsure.ensureLoggedIn('/'), Auth.isAuthorized('user'), Account.getProfile)
   .put(connectEnsure.ensureLoggedIn('/'), Auth.isAuthorized('user'), Account.editProfile)
 
 // takes id of the target profile as query parameter - req.query.id
@@ -21,3 +21,8 @@ router.route('/all')
         .get(DevHelp.getAll)
 
 export default router;
+
+function testMiddleware(req, res, next) {
+  console.log('headers', req.headers);
+  next();
+}

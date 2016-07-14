@@ -202,8 +202,8 @@ body {
   width: 500px;
 }
 
-#submitButton {
-  margin-right: 15px;
+#submitButton, #registerButton {
+  margin-top: 40px;
   width: 100%;
 }
 
@@ -217,7 +217,7 @@ body {
   top:1px;
 }
 
-#newUserWell {
+#newUserWell, #existingUserWell {
   margin-top: 50px;
   /*margin-left: 40px;
   margin-right: 40px;*/

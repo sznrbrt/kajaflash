@@ -8,8 +8,8 @@ class Account {
 
   static register(req, res) {
     let userObj = req.body;
-
     UserDB.findOne({email: userObj.email}, (err0, dbUser) => {
+      console.log(err0, dbUser);
       if(err0 || dbUser) return res.status(400).send({ error: 'Email not available.' });
 
       bcrypt.hash(userObj.password, 12, (err1, hash) => {
@@ -21,7 +21,6 @@ class Account {
           username: userObj.username,
           password: hash
         })
-
         user.save((err2) => {
           res.status(err2 ? 400 : 200).send(err2 || "Successful registration!");
         })
