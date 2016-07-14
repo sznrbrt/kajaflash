@@ -3,7 +3,9 @@ import bcrypt from 'bcrypt';
 
 class Account {
   static getProfile(req, res) {
-    res.send(req.user);
+    console.log('es ide');
+    let user = req.user;
+    return res.status(200).send(user);
   }
 
   static register(req, res) {
@@ -57,6 +59,7 @@ class DevHelp {
 class Auth {
   static login(req, res) {
     console.log('You are in!');
+    console.log(req.session);
     return res.send(req.user);
   }
 

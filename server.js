@@ -29,7 +29,8 @@ let app = express();
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:8080");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Credentials", 'true');
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE');
   next();
 });
 
@@ -39,7 +40,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('cookie-parser')('keyboardcat'));
-app.use(require('express-session')({ secret: 'keyboardcat', resave: true, saveUninitialized: false, maxAge: (7 * 26 * 60 * 60 * 1000) }));
+app.use(require('express-session')({ secret: 'keyboardcat', resave: true, saveUninitialized: false, maxAge: (7 * 26 * 60 * 60 * 1000), cookie: {secure: false, httpOnly: false} }));
 
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());
