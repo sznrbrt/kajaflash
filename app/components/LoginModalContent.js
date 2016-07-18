@@ -2,6 +2,8 @@ import React from "react";
 import { render } from 'react-dom'
 import { Button, Modal, Form, FormGroup, Col, FormControl, Checkbox, ControlLabel, Well } from 'react-bootstrap'
 import auth from '../auth'
+import { browserHistory } from 'react-router'
+
 
 export default class LoginModalContent extends React.Component {
   constructor(props){
@@ -17,14 +19,19 @@ export default class LoginModalContent extends React.Component {
 
   onLoginSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
     if (!this.state.email.length || !this.state.password.length) return;
-    auth.login(this.state.email, this.state.password);
+    auth.login(this.state.email, this.state.password, (isLoggedIn) => {
+      if(isLoggedIn) {
+        console.log('GO');
+        browserHistory.push('/mainpage')
+      }
+    });
     this.setState({email: '', password: ''})
   }
 
 
   render() {
+    console.log(this.props);
     return(
       <div className="loginModalContent">
         <Form horizontal>

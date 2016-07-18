@@ -25,7 +25,7 @@ module.exports = {
     });
   },
 
-  login(email, password) {
+  login(email, password, cb) {
     if(!email || !password) return this.onChange(false)
     let credentials = {'email': email, 'password': password};
     ajax({
@@ -39,6 +39,7 @@ module.exports = {
     .done((data , status) => {
       console.log(data);
       this.onChange(true);
+      cb(true)
     })
     .fail(() => {
       this.onChange(false)
@@ -53,12 +54,26 @@ module.exports = {
     //   });
   },
 
-  register(userObj, cb) {
-    post( "//localhost:3000/data/auth/local/register", userObj)
-      .done(function( data ) {
-        // Logged in
-        cb()
-      });
+  register(name, email, password) {
+    let newUser = { "name": name, "email": email, "password": password};
+    console.log(newUser);
+    ajax({
+      url: "//localhost:3000/data/auth/local/register",
+      method: "POST",
+      xhrFields: {
+        withCredentials: true
+      },
+      async: true,
+      crossDomain: true,
+      data: newUser,
+      "cache-control": "no-cache"
+    })
+    .done((data , status, x) => {
+      console.log('Registered.');
+    })
+    .fail(() => {
+      console.log('Fail.');
+    });
   },
 
   getToken() {
@@ -67,9 +82,20 @@ module.exports = {
   },
 
   logout(cb) {
-    // deletes token, calls callback
-    delete localStorage.token
-    if (cb) cb()
+    ajax({
+      url: "//localhost:3000/data/auth/local/logout",
+      method: "DELETE",
+      xhrFields: {
+        withCredentials: true
+      }
+    })
+    .done((data , status) => {
+      this.onChange(false);
+      cb(true);
+    })
+    .fail(() => {
+      this.onChange(true)
+    });
   },
 
   loggedIn() {

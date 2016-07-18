@@ -49,7 +49,7 @@ app.use(passport.session());
 app.use('/data', indexRoute);
 
 app.get('*', function(req, res) {
-  res.sendFile(path.resolve( __dirname, 'public' , 'index.html'));
+  return res.sendFile(path.resolve( __dirname, 'public' , 'index.html'));
 });
 
 app.listen(PORT,(err) => {
