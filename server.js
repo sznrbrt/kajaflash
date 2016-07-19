@@ -12,6 +12,7 @@ import User from './server/models/User'
 import passport from 'passport'
 import config from './webpack.config';
 import webpack from 'webpack';
+import session from 'express-session'
 
 import PassportMiddleware from './server/middlewares/passport'
 
@@ -50,7 +51,17 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(require('cookie-parser')('keyboardcat'));
-app.use(require('express-session')({ secret: 'keyboardcat', resave: true, saveUninitialized: false, maxAge: (7 * 26 * 60 * 60 * 1000), cookie: {secure: false, httpOnly: false} }));
+// app.use(session({ secret: 'keyboardcat', resave: true, saveUninitialized: false, maxAge: (7 * 26 * 60 * 60 * 1000), cookie: {secure: false, httpOnly: false} }));
+const MongoStore = require('connect-mongo')(session);
+app.use(session({
+    secret: 'foo',
+    store: new MongoStore({
+      url: 'mongodb://localhost/kajaflash',
+      ttl: 14 * 24 * 60 * 60 // = 14 days. Default,
+    }),
+    resave: true,
+    saveUninitialized: false
+}));
 
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(passport.initialize());

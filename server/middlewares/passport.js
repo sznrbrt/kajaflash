@@ -54,5 +54,5 @@ passport.deserializeUser(function(id, cb) {
     } else {
       cb(null, user);
     }
-  });
+  }).populate('openOrders');
 });

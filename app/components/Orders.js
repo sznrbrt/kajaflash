@@ -28,6 +28,8 @@ const openOrders =  {
                       "totalAmount": 1000,
                       "customer": "578d1f381639feb2d01e3e1b",
                       "vendor": "578d2c9e3025c470d31c9568",
+                      "vendorName": "Burger Place",
+                      "vendorImg": "https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Burger_Chef_Logo.svg/1124px-Burger_Chef_Logo.svg.png",
                       "__v": 0,
                       "status": {
                         "cancelled": false,

@@ -13,7 +13,7 @@ export default class Logo extends React.Component {
     return(
       <div>
         <Navbar.Brand>
-          <a href="#" id="logo">YUM YUM</a>
+          <a href="#" id="logo">KAJAFLASH</a>
         </Navbar.Brand>
       </div>
     );
