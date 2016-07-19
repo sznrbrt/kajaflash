@@ -28,14 +28,21 @@ mongoose.connect(MONGOURL, err => {
 
 let app = express();
 
-// Do not allow cors in dev?!
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Credentials", 'true');
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE');
-  next();
-});
+app.use(require("webpack-dev-middleware")(compiler, {
+    noInfo: true, publicPath: config.output.publicPath
+}));
+
+app.use(require("webpack-hot-middleware")(compiler));
+
+
+// // Do not allow cors in dev?!
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   res.header("Access-Control-Allow-Credentials", 'true');
+//   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE');
+//   next();
+// });
 
 app.use(express.static('public'));
 
