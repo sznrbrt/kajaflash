@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Row, Col, Panel } from 'react-bootstrap';
 
 
-export default class Landing extends React.Component {
+export default class LandingGuide extends React.Component {
   constructor(props){
     super(props)
 

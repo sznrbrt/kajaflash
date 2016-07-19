@@ -160,6 +160,10 @@ body {
 }
 
 .panel-body {
+
+}
+
+.guidePanelItem {
   min-height: 260px;
 }
 
@@ -227,4 +231,20 @@ body {
   margin-top: 50px;
   font-size: 32px;
   font-weight: bolder;
+}
+
+#orderPanel {
+  margin-right: 15px;
+}
+
+#dealsPanel {
+  margin-left: 15px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+#userMainBody {
+  margin-top: 10px;
 }

@@ -10,6 +10,8 @@ import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
 import User from './server/models/User'
 import passport from 'passport'
+import config from './webpack.config';
+import webpack from 'webpack';
 
 import PassportMiddleware from './server/middlewares/passport'
 
@@ -17,6 +19,7 @@ dotenv.load();
 
 const PORT = process.env.PORT || 3000;
 const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/kajaflash';
+const compiler = webpack(config);
 
 mongoose.Promise = global.Promise;
 mongoose.connect(MONGOURL, err => {
@@ -49,7 +52,7 @@ app.use(passport.session());
 app.use('/data', indexRoute);
 
 app.get('*', function(req, res) {
-  res.sendFile(path.resolve( __dirname, 'public' , 'index.html'));
+  return res.sendFile(path.resolve( __dirname, 'public' , 'index.html'));
 });
 
 app.listen(PORT,(err) => {

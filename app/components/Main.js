@@ -27,7 +27,6 @@ export default class Main extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return(
       <div>
         <NavBar isLoggedIn={this.state.loggedIn} />
