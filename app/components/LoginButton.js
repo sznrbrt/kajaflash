@@ -24,7 +24,7 @@ export default class LoginButton extends React.Component {
 
     return(
       <div className="centeredPrompt">
-        <Button onClick={this.open} id="logInBtn" bsStyle="success navButton" bsSize="small">Log Ins</Button>
+        <Button onClick={this.open} id="logInBtn" bsStyle="success navButton" bsSize="small">Log In</Button>
 
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>

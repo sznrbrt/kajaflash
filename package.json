@@ -1,7 +1,6 @@
 {
   "name": "kajaflash",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "node ./node_modules/babel-cli/bin/babel-node.js --presets react,es2015 server.js"
@@ -22,6 +21,7 @@
     "jquery": "^3.1.0",
     "jwt-simple": "^0.5.0",
     "lodash": "^4.13.1",
+    "moment": "^2.14.1",
     "mongoose": "^4.5.3",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
@@ -48,5 +48,14 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sznrbrt/kajaflash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sznrbrt/kajaflash/issues"
+  },
+  "homepage": "https://github.com/sznrbrt/kajaflash#readme",
+  "description": ""
 }

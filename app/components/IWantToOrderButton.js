@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from 'react-dom'
-import { Col, Row, Panel } from 'react-bootstrap'
+import { Col, Row, Button } from 'react-bootstrap'
+import { browserHistory } from 'react-router'
 
 export default class IWantToOrderButton extends React.Component {
   constructor(props){
@@ -8,15 +9,16 @@ export default class IWantToOrderButton extends React.Component {
   }
 
   handleClick() {
-    console.log('ORDERRRRRRRRR!');
+    console.log('wtf');
+    browserHistory.push('/ordering');
   }
 
   render() {
     return(
       <div className="fullWidth">
-        <Panel onClick={ this.handleClick }>
-          I WANT TO ORDER!
-        </Panel>
+        <Button className="iWantToOrderButton" bsStyle="success" onClick={this.handleClick}>
+          I WANT TO ORDER
+        </Button>
       </div>
     );
   }

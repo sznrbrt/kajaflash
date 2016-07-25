@@ -18,6 +18,11 @@ router.route('/profile')
 router.route('/page')
   .get(connectEnsure.ensureLoggedIn('/'), Auth.isAuthorized('user'), VendorAccount.getVendorPage)
 
+  // only for development
+router.route('/all')
+        .get(DevHelp.getAll)
+
+
 // only for development
 router.route('/all')
         .get(DevHelp.getAll)
