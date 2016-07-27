@@ -18,6 +18,8 @@ class VendorAccount {
           email: vendorObj.email,
           name: vendorObj.name,
           username: vendorObj.username,
+          logo: vendorObj.logo,
+          deliveryhours: vendorObj.deliveryhours,
           password: hash
         })
 
@@ -51,6 +53,18 @@ class VendorAccount {
     VendorDB.findById(id, (err, vendor) =>{
       res.status(err ? 400 : 200).send(err || vendor);
     })
+  }
+
+  static getAll(req, res) {
+    VendorDB.find({}, (err, users) => {
+      res.status(err ? 400 : 200).send(err || users);
+    }).populate('menu').select('-password');
+  }
+
+  static getList(req, res) {
+    VendorDB.find({}, 'name logo deliveryhours',(err, users) => {
+      res.status(err ? 400 : 200).send(err || users);
+    });
   }
 }
 

@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import Main from "./components/Main.js"
-import Landing from './components/Landing'
-import UserMain from "./components/UserMain.js"
-import Ordering from "./components/Ordering.js"
+import Landing from './components/MainPage/Landing'
+import UserMain from "./components/UserMainPage/UserMain.js"
+import Ordering from "./components/OrderPage/Ordering.js"
 
 require('./main.css');
 

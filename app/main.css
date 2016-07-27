@@ -384,3 +384,7 @@ body {
 #restaurantsPanel {
   margin-top: 10px;
 }
+
+.restaurantDeliveryHour {
+  font-size: 12px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from 'react-dom'
 import { Button, Modal, Form, FormGroup, Col, FormControl, Checkbox, ControlLabel, Well } from 'react-bootstrap'
-import auth from '../auth'
+import auth from '../../auth'
 
 export default class RegisterModalContent extends React.Component {
   constructor(props){

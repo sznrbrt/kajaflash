@@ -3,9 +3,9 @@ import { render } from 'react-dom'
 import { Button, Modal } from 'react-bootstrap'
 import LoginModalContent from './LoginModalContent'
 import { browserHistory } from 'react-router'
-import auth from '../auth'
+import auth from '../../auth'
 
-export default class LoginButton extends React.Component {
+export default class LogoutButton extends React.Component {
   constructor(props){
     super(props)
 

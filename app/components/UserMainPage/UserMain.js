@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from 'react-dom'
 import { Row, Col, Pre } from 'react-bootstrap';
-import Footer from './Footer'
+import Footer from '../MainPage/Footer'
 import Deals from './Deals'
 import Orders from './Orders'
 import CurrentOrders from './CurrentOrders'

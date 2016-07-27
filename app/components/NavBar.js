@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from 'react-dom'
 import { Button, Navbar, Nav, Modal, OverlayTrigger } from 'react-bootstrap';
-import Logo from './Logo'
-import LoginButton from './LoginButton'
-import RegisterButton from './RegisterButton'
-import LogoutButton from './LogoutButton'
+import Logo from './MainPage/Logo'
+import LoginButton from './MainPage/LoginButton'
+import RegisterButton from './MainPage/RegisterButton'
+import LogoutButton from './MainPage/LogoutButton'
 import { Link } from 'react-router'
 
 export default class NavBar extends React.Component {

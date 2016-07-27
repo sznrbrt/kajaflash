@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from 'react-dom'
 import NavBar from './NavBar'
-import Landing from './Landing'
-import UserMain from './UserMain'
+import Landing from './MainPage/Landing'
+import UserMain from './UserMainPage/UserMain'
 import auth from '../auth'
 
 // Regex to hide react-bootstrap props error logs ^((?!Unknown props).)+$
