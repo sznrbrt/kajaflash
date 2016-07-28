@@ -1,11 +1,17 @@
 import React from "react";
 import { render } from "react-dom"
 import { Col, Row, ListGroupItem, Image, Button } from 'react-bootstrap'
+import { browserHistory } from 'react-router'
 
 export default class RestaurantListItem extends React.Component {
   constructor(props){
     super(props)
 
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    browserHistory.push('/restaurant/' + this.props.id)
   }
 
   render() {
@@ -24,7 +30,7 @@ export default class RestaurantListItem extends React.Component {
               <div className="restaurantDeliveryHour centeredPrompt">
                 Open: {this.props.deliveryhours}
               </div>
-              <Button bsStyle="success">
+              <Button bsStyle="success" onClick={this.handleClick}>
                 View Menu
               </Button>
             </Col>

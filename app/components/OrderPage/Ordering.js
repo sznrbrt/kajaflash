@@ -11,7 +11,7 @@ export default class Ordering extends React.Component {
 
   render() {
     let restaurants = restaurantList.map((item) => {
-      return <RestaurantListItem name={item.name} logo={item.logo} deliveryhours={item.deliveryhours} />
+      return <RestaurantListItem name={item.name} logo={item.logo} deliveryhours={item.deliveryhours} id={item._id} />
     });
 
     return(

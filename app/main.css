@@ -388,3 +388,7 @@ body {
 .restaurantDeliveryHour {
   font-size: 12px;
 }
+
+#basketPanel {
+  border-left: 1px solid Lightgrey;
+}
