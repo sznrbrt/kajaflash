@@ -15,7 +15,7 @@ ReactDOM.render(
       <IndexRoute component={Landing} />
       <Route path="/mainpage" component={UserMain}/>
       <Route path="/ordering" component={Ordering}/>
-      <Route path="/restaurant/:id" component={RestaurantPage}/>
+      <Route path="/restaurant" component={RestaurantPage}/>
     </Route>
   </Router>,
   document.getElementById('root'));

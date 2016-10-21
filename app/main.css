@@ -392,3 +392,38 @@ body {
 #basketPanel {
   border-left: 1px solid Lightgrey;
 }
+
+.resturantPageHeaderImage {
+  margin-top: 10px;
+  margin-right: 10px;
+  max-height: 110px;
+  border-radius: 55px;
+}
+
+.ruler {
+  color: Lightgrey;
+}
+
+.menuItem {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.menuItemImage {
+  max-height: 80px;
+  margin: 10px;
+}
+
+.menuItemDesc {
+  margin-top: 30px;
+}
+
+.menuItemPrice {
+  font-weight: bolder;
+  color: green;
+  margin-top: 20px;
+}
+
+.addToBasket {
+  font-size: 8px;
+}

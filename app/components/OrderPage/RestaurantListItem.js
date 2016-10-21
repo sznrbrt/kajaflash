@@ -11,7 +11,7 @@ export default class RestaurantListItem extends React.Component {
   }
 
   handleClick() {
-    browserHistory.push('/restaurant/' + this.props.id)
+    browserHistory.push('/restaurant')
   }
 
   render() {

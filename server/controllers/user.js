@@ -22,7 +22,8 @@ class Account {
           name: userObj.name,
           username: userObj.username,
           password: hash
-        })
+        });
+
         user.save((err2) => {
           res.status(err2 ? 400 : 200).send(err2 || "Successful registration!");
         })
